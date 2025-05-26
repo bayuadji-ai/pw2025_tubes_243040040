@@ -22,7 +22,3 @@ echo json_encode($mapel);
 
 $stmt->close();
 $conn->close();
-?>
-
-
-

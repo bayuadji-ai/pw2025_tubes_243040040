@@ -22,4 +22,3 @@ echo json_encode($materi);
 
 $stmt->close();
 $conn->close();
-?>
