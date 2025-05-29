@@ -1,64 +1,166 @@
 <?php
 require 'functions.php';
 
-if(isset($_POST["register"]) ) {
+if (isset($_POST["register"])) {
 
-        if("registrasi"($_POST) > 0 ) {
-            echo "<script>
+    if ("registrasi"($_POST) > 0) {
+        echo "<script>
                     alert('user baru berhasil di tambahkan!');
                 </script>";
-        }else {
-            echo mysqli_error($conn);
-        }
+    } else {
+        echo mysqli_error($conn);
     }
+}
 ?>
 
 
 
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
     <title>Registrasi Siswa</title>
     <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: "Poppins", sans-serif;
+        }
+
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background: linear-gradient(90deg, #e2e2e2, #c9d6ff);
+        }
+
         label {
             display: block;
         }
+
+        .container {
+            position: relative;
+            width: 850px;
+            height: 550px;
+            background: #fff;
+            border-radius: 30px;
+            box-shadow: 0 0 30px rgba(0, 0, 0, .2);
+        }
+
+        .form-box {
+            position: absolute;
+            right: 0;
+            width: 50%;
+            height: 100%;
+            background: seagreen;
+            display: flex;
+            align-items: center;
+            color: #333;
+            text-align: center;
+            padding: 40px;
+        }
+
+        form {
+            width: 100%;
+        }
+
+        .container h1 {
+            font-size: 36px;
+            margin: -10px 0;
+        }
+
+        ul li {
+            position: relative;
+            margin: 30px 0;
+        }
+
+        ul li input {
+            width: 100%;
+            padding: 13px 50px 13px 20px;
+            background: #eee;
+            border-radius: 8px;
+            border: none;
+            outline: none;
+            font-size: 16px;
+            color: #333;
+            font-weight: 500;
+        }
+
+        ul li input::placeholder {
+            color: #888;
+            font-weight: 400;
+        }
+
+        ul li i {
+            position: absolute;
+            right: 20px;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 20px;
+            color: #888;
+        }
+
+        .btn {
+            width: 100%;
+            height: 48px;
+            background: #7494ec;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, .1);
+            border: none;
+            cursor: pointer;
+            font-size: 16px;
+            color: #fff;
+            font-weight: 600;
+        }
     </style>
 </head>
+
 <body>
-    <h1>Registrasi Siswa</h1>
+    <div class="container">
+        <div class="form-box regis">
 
-    <form action="" method="post">
+            <form action="" method="post">
 
-    <ul>
-        <li>
-            <label for="username">Username :</label>
-            <input type="text" name="username" id="username">
-        </li>
-            
-        <li>
-            <label for="email">Email :</label>
-            <input type="email" name="email" id="email">
-        </li>
+                <h1>Daftar</h1>
+                <ul>
+                    <li>
+                        <label for="username"></label>
+                        <input type="text" placeholder="Username" name="username" id="username">
+                        <i class="bi bi-person"></i>
+                    </li>
 
-        <li>
-            <label for="password">Password :</label>
-            <input type="password" name="password" id="password">
-        </li>
+                    <li>
+                        <label for="email"></label>
+                        <input type="email" placeholder="Email" name="email" id="username">
+                        <i class="bi bi-envelope"></i>
+                    </li>
 
-        <li>
-            <label for="password2">Konfirmasi Password :</label>
-            <input type="password" name="password2" id="password2">
-            
-        </li>
+                    <li>
+                        <label for="password"></label>
+                        <input type="password" placeholder="Password" name="password" id="password">
+                        <i class="bi bi-lock"></i>
+                    </li>
 
-        <li>
-            <button type="submit" name="register">Daftar Sekarang!</button>
-        </li>
-    </ul>
+                    <li>
+                        <label for="password2"></label>
+                        <input type="password" placeholder="Konfirmasi Password" name="password2" id="password2">
+                        <i class="bi bi-lock"></i>
+                    </li>
 
-    </form>
+                    <button type="submit" class="btn" name="register">Daftar Sekarang!</button>
+                    
+                </ul>
+
+            </form>
+        </div>
+
+    </div>
+
 </body>
+
 </html>

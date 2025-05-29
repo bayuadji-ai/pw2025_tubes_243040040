@@ -1,0 +1,73 @@
+body {
+  margin: 0;
+  padding: 0;
+}
+
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 40px;
+  background-color: #f8f9fa;
+  position: fixed;
+  width: 100%;
+  top: 0;
+  z-index: 1000;
+}
+
+.nav-left h1 {
+  margin: 0;
+  font-family: serif;
+}
+
+.nav-center ul {
+  display: flex;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  gap: 40px;
+}
+
+.nav-center ul li a {
+  text-decoration: none;
+  color: #333;
+  font-weight: 500;
+}
+
+.nav-center ul li a:hover {
+  color: darkcyan;
+  transition: 0.3s;
+}
+
+.nav-center ul li:last-child a {
+  border: 1px solid #333;
+  padding: 6px 12px;
+  border-radius: 20px;
+}
+
+.nav-center ul li:last-child a:hover {
+  background-color: #0f1e2f;
+  color: #f8f9fa;
+  transition: 0.3s;
+}
+
+/* Section bawah navbar */
+.hero {
+  background: linear-gradient(to right, #4facfe, #00f2fe);
+  padding: 30px 20px 20px;
+  text-align: center;
+  color: white;
+  margin-top: 70px;
+  border-radius: 25px;
+}
+
+.hero-text h2 {
+  margin: 0;
+  font-size: 2rem;
+}
+
+.hero-text p {
+  margin: 10px 0 30px;
+  font-size: 1.2rem;
+}
+
