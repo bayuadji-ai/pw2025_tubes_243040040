@@ -1,71 +1,106 @@
-<?php
-$conn = new mysqli("localhost", "root", "", "edge_academy");
-$kelas = $conn->query("SELECT * FROM tabel_kelas");
-?>
+<!DOCTYPE html>
+<html lang="id">
 
-<label>Pilih Kelas:</label>
-<select id="kelas" name="kelas">
-    <option value="">-- Pilih Kelas --</option>
-    <?php while ($k = $kelas->fetch_assoc()): ?>
-        <option value="<?= $k['id_kelas'] ?>"><?= $k['nama_kelas'] ?></option>
-    <?php endwhile; ?>
-</select>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard Siswa</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
 
-<div id="daftar_mapel" style="margin-top:20px;">
-    <!-- Tombol mapel akan muncul di sini -->
-</div>
-
-<div id="daftar_materi" style="margin-top:20px;">
-    <!-- Materi akan tampil di sini -->
-</div>
-
-<script>
-    document.getElementById("kelas").addEventListener("change", function() {
-        let id_kelas = this.value;
-        let container = document.getElementById("daftar_mapel");
-        let materiContainer = document.getElementById("daftar_materi");
-        materiContainer.innerHTML = ""; // Clear materi jika kelas ganti
-
-        if (!id_kelas) {
-            container.innerHTML = "";
-            return;
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
         }
 
-        fetch("get_mapel.php?id_kelas=" + id_kelas)
-            .then(response => response.json())
-            .then(data => {
-                if (data.length === 0) {
-                    container.innerHTML = "<p>Tidak ada mata pelajaran untuk kelas ini.</p>";
-                    return;
-                }
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            height: 100vh;
+        }
 
-                let html = "";
-                data.forEach(mapel => {
-                    html += `<button class="btn-mapel" data-id="${mapel.id_mapel}" style="margin:5px;">${mapel.nama_mapel}</button>`;
-                });
-                container.innerHTML = html;
+        .sidebar {
+            width: 20%;
+            background-color: #f4f4f4;
+            padding: 30px 20px;
+            border-right: 1px solid #ccc;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
 
-                // Pasang event click ke semua tombol mapel
-                document.querySelectorAll(".btn-mapel").forEach(btn => {
-                    btn.addEventListener("click", function() {
-                        let id_mapel = this.getAttribute("data-id");
-                        fetch("get_materi.php?id_mapel=" + id_mapel)
-                            .then(res => res.json())
-                            .then(materi => {
-                                if (materi.length === 0) {
-                                    materiContainer.innerHTML = "<p>Belum ada materi untuk mata pelajaran ini.</p>";
-                                    return;
-                                }
+        .sidebar a i {
+            margin-right: 12px;
+            font-size: 18px;
+        }
 
-                                let output = "<h3>Daftar Materi:</h3><ul>";
-                                materi.forEach(item => {
-                                    output += `<li><strong>${item.judul_materi}</strong></li>`;
-                                });
-                                output += "</ul>";
-                                materiContainer.innerHTML = output;
-                            });
-                    });
-                });
-            });
-    });
-</script>
+        .logo img {
+            width: 200px;
+            height: auto;
+            margin-bottom: 1px;
+        }
+
+        .sidebar a {
+            text-decoration: none;
+            color: #333;
+            font-weight: bold;
+            padding: 10px;
+            border-radius: 5px;
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        .sidebar a:hover {
+            background-color: #ddd;
+            color: #000;
+        }
+
+        .sidebar a.logout:hover {
+            background-color: #f8d7da;
+            color: darkred;
+        }
+
+        .content {
+            flex-grow: 1;
+            padding: 40px;
+            text-align: center;
+        }
+
+        h1 {
+            margin-top: 100px;
+            font-size: 28px;
+        }
+
+        p {
+            margin-top: 10px;
+            font-size: 18px;
+            color: #666;
+        }
+
+        .sidebar a.red {
+            color: red;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="sidebar">
+        <div class="logo"><img src="img/logo.png" alt=""></div>
+
+        <a href="dashboard_siswa.php"><i class="bi bi-house-door"></i>Home</a>
+        <a href="ruangmateri.php"><i class="bi bi-book"></i>RuangMateri</a>
+        <a href="#"><i class="bi bi-pencil"></i>RuangLatihan</a>
+        <a href="#"><i class="bi bi-person"></i>Profile</a>
+        <a href="#" class="red"><i class="bi bi-box-arrow-left"></i>Logout</a>
+        <a href="#"><i class="bi bi-info-circle"></i>Tentang</a>
+    </div>
+
+    <div class="content">
+        <h1>Halo, Selamat Datang</h1>
+        <p>Belajar seru bareng kami</p>
+    </div>
+
+</body>
+
+</html>
