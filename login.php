@@ -128,6 +128,10 @@ if (isset($_POST["login"])) {
             color: #fff;
             font-weight: 600;
         }
+
+        ul a {
+            margin-top: 20px;
+        }
     </style>
 </head>
 <!-- akhir style -->
@@ -139,7 +143,7 @@ if (isset($_POST["login"])) {
                 <h1>Login</h1>
 
                 <?php if (isset($error)) : ?>
-                    <p style="color: red; font-style:italic">USERNAME ATAU PASSWORD SALAH!</p>
+                    <p style="color: red; font-style:italic" ;>USERNAME ATAU PASSWORD SALAH!</p>
                 <?php endif; ?>
 
                 <ul>
@@ -156,6 +160,8 @@ if (isset($_POST["login"])) {
                     </li>
 
                     <button type="submit" class="btn" name="login">Login</button>
+
+                    <a href="index.php" class="btn">Kembali Ke Beranda</a>
 
                 </ul>
             </form>

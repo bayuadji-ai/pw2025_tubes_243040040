@@ -1,121 +1,138 @@
 <?php
-// Koneksi DB dan ambil kelas
 $conn = new mysqli("localhost", "root", "", "edge_academy");
 $kelas = $conn->query("SELECT * FROM tabel_kelas");
 ?>
 
-<label for="kelas">Pilih Kelas:</label>
-<select id="kelas">
-    <option value="">-- Pilih Kelas --</option>
-    <?php while ($k = $kelas->fetch_assoc()) : ?>
-        <option value="<?= $k['id_kelas'] ?>"><?= $k['nama_kelas'] ?></option>
-    <?php endwhile; ?>
-</select>
+<!DOCTYPE html>
+<html lang="id">
 
-<div id="mapelContainer" class="mapel-container"></div>
-<div id="materiContainer" style="margin-top:20px;"></div>
+<head>
+    <meta charset="UTF-8">
+    <title>Ruang Materi</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        .mapel-card {
+            width: 140px;
+            border-radius: 12px;
+            padding: 15px;
+            text-align: center;
+            cursor: pointer;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            transition: transform 0.2s;
+            background-color: #f8f9fa;
+        }
 
-<style>
-    .mapel-container {
-        display: flex;
-        gap: 15px;
-        flex-wrap: wrap;
-        margin-top: 20px;
-    }
+        .mapel-card:hover {
+            transform: scale(1.05);
+        }
 
-    .mapel-card {
-        width: 120px;
-        border: 1px solid #ccc;
-        border-radius: 10px;
-        padding: 15px;
-        text-align: center;
-        cursor: pointer;
-        box-shadow: 0 2px 5px rgb(0 0 0 / 0.1);
-        transition: transform 0.2s, box-shadow 0.2s;
-    }
+        .mapel-icon {
+            font-size: 32px;
+            margin-bottom: 8px;
+        }
 
-    .mapel-card:hover {
-        transform: translateY(-5px);
-        box-shadow: 0 6px 12px rgb(0 0 0 / 0.15);
-    }
+        .mapel-name {
+            font-weight: 600;
+            font-size: 15px;
+        }
+    </style>
+</head>
 
-    .mapel-icon {
-        font-size: 40px;
-        margin-bottom: 10px;
-        color: #3498db;
-    }
+<body class="container py-4">
+    <h2 class="mb-3">Pilih Kelas</h2>
+    <select id="kelas" class="form-select w-50 mb-4">
+        <option value="">-- Pilih Kelas --</option>
+        <?php while ($k = $kelas->fetch_assoc()) : ?>
+            <option value="<?= $k['id_kelas'] ?>"><?= $k['nama_kelas'] ?></option>
+        <?php endwhile; ?>
+    </select>
 
-    .mapel-name {
-        font-weight: 600;
-        font-size: 16px;
-        color: #333;
-    }
-</style>
+    <div id="mapelContainer" class="d-flex flex-wrap gap-3 mb-4"></div>
 
-<script>
-    // Fungsi untuk dapat icon (bisa kamu ganti pakai gambar juga)
-    function getIcon(nama) {
-        nama = nama.toLowerCase();
-        if (nama.includes("fisika")) return "⚛️";
-        if (nama.includes("kimia")) return "🧪";
-        if (nama.includes("matematika")) return "➗";
-        if (nama.includes("biologi")) return "🧬";
-        if (nama.includes("bahasa")) return "📝";
-        if (nama.includes("geografi")) return "🌍";
-        if (nama.includes("ekonomi")) return "💰";
-        if (nama.includes("sosiologi")) return "👥";
-        return "📚"; // default icon
-    }
+    <div id="materiContainer"></div>
 
-    const kelasSelect = document.getElementById("kelas");
-    const mapelContainer = document.getElementById("mapelContainer");
-    const materiContainer = document.getElementById("materiContainer");
+    <script>
+        function getIcon(nama) {
+            nama = nama.toLowerCase();
+            if (nama.includes("fisika")) return "⚛️";
+            if (nama.includes("kimia")) return "🧪";
+            if (nama.includes("matematika")) return "➗";
+            if (nama.includes("biologi")) return "🧬";
+            if (nama.includes("bahasa")) return "📝";
+            if (nama.includes("geografi")) return "🌍";
+            if (nama.includes("ekonomi")) return "💰";
+            if (nama.includes("sosiologi")) return "👥";
+            return "📚";
+        }
 
-    kelasSelect.addEventListener("change", () => {
-        const idKelas = kelasSelect.value;
-        materiContainer.innerHTML = "";
-        mapelContainer.innerHTML = "";
+        const kelasSelect = document.getElementById("kelas");
+        const mapelContainer = document.getElementById("mapelContainer");
+        const materiContainer = document.getElementById("materiContainer");
 
-        if (!idKelas) return;
+        kelasSelect.addEventListener("change", () => {
+            const idKelas = kelasSelect.value;
+            materiContainer.innerHTML = "";
+            mapelContainer.innerHTML = "";
 
-        fetch("get_mapel.php?id_kelas=" + idKelas)
-            .then((res) => res.json())
-            .then((mapelList) => {
-                if (mapelList.length === 0) {
-                    mapelContainer.innerHTML = "<p>Tidak ada mata pelajaran untuk kelas ini.</p>";
-                    return;
-                }
+            if (!idKelas) return;
 
-                mapelList.forEach((mapel) => {
-                    const card = document.createElement("div");
-                    card.className = "mapel-card";
+            fetch("get_mapel.php?id_kelas=" + idKelas)
+                .then(res => res.json())
+                .then(mapelList => {
+                    if (mapelList.length === 0) {
+                        mapelContainer.innerHTML = "<p>Tidak ada mapel untuk kelas ini.</p>";
+                        return;
+                    }
 
-                    card.innerHTML = `
-            <div class="mapel-icon">${getIcon(mapel.nama_mapel)}</div>
-            <div class="mapel-name">${mapel.nama_mapel}</div>
-          `;
+                    mapelList.forEach(mapel => {
+                        const card = document.createElement("div");
+                        card.className = "mapel-card";
+                        card.innerHTML = `
+                            <div class="mapel-icon">${getIcon(mapel.nama_mapel)}</div>
+                            <div class="mapel-name">${mapel.nama_mapel}</div>
+                        `;
 
-                    card.addEventListener("click", () => {
-                        materiContainer.innerHTML = "<p>Loading materi...</p>";
+                        card.addEventListener("click", () => {
+                            materiContainer.innerHTML = `<p>Loading materi untuk <b>${mapel.nama_mapel}</b>...</p>`;
+                            fetch("get_materi.php?id_mapel=" + mapel.id_mapel)
+                                .then(res => res.json())
+                                .then(materiList => {
+                                    if (materiList.length === 0) {
+                                        materiContainer.innerHTML = `<p>Belum ada materi untuk mapel ini.</p>`;
+                                        return;
+                                    }
 
-                        fetch("get_materi.php?id_mapel=" + mapel.id_mapel)
-                            .then((res) => res.json())
-                            .then((materiList) => {
-                                if (materiList.length === 0) {
-                                    materiContainer.innerHTML = "<p>Belum ada materi untuk mapel ini.</p>";
-                                    return;
-                                }
-                                let html = "<h4>Materi:</h4><ul>";
-                                materiList.forEach((materi) => {
-                                    html += `<li>${materi.judul_materi}</li>`;
+                                    let html = "";
+                                    materiList.forEach(materi => {
+                                        html += `
+                                            <div class="card" style="width: 18rem;">
+                                                <div class="card-body">
+                                                    <h5 class="card-title">${materi.judul_materi}</h5>
+                                                    <p class="card-text">${materi.isi_text.substring(0, 100)}...</p>
+                                                    <a href="#" class="btn btn-primary">Lihat Detail</a>
+                                                </div>
+                                            </div>
+                                    `;
+                                    });
+
+                                    html += '</div>';
+                                    materiContainer.innerHTML = html;
+                                })
+                                .catch(err => {
+                                    console.error("Fetch materi error:", err);
+                                    materiContainer.innerHTML = `<p>Gagal memuat materi.</p>`;
                                 });
-                                html += "</ul>";
-                                materiContainer.innerHTML = html;
-                            });
-                    });
+                        });
 
-                    mapelContainer.appendChild(card);
+                        mapelContainer.appendChild(card);
+                    });
+                })
+                .catch(err => {
+                    console.error("Fetch mapel error:", err);
+                    mapelContainer.innerHTML = `<p>Gagal memuat mapel.</p>`;
                 });
-            });
-    });
-</script>
+        });
+    </script>
+</body>
+
+</html>

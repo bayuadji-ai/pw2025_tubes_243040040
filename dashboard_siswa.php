@@ -36,9 +36,9 @@
         }
 
         .logo img {
-            width: 200px;
+            width: 250px;
             height: auto;
-            margin-bottom: 1px;
+            text-align: center;
         }
 
         .sidebar a {
@@ -86,13 +86,13 @@
 <body>
 
     <div class="sidebar">
-        <div class="logo"><img src="img/logo.png" alt=""></div>
+        <div class="logo"><img src="img/logo_dashboard.png" alt=""></div>
 
         <a href="dashboard_siswa.php"><i class="bi bi-house-door"></i>Home</a>
         <a href="ruangmateri.php"><i class="bi bi-book"></i>RuangMateri</a>
         <a href="#"><i class="bi bi-pencil"></i>RuangLatihan</a>
         <a href="#"><i class="bi bi-person"></i>Profile</a>
-        <a href="#" class="red"><i class="bi bi-box-arrow-left"></i>Logout</a>
+        <a href="logout.php" class="red"><i class="bi bi-box-arrow-left"></i>Logout</a>
         <a href="#"><i class="bi bi-info-circle"></i>Tentang</a>
     </div>
 

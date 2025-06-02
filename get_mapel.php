@@ -1,7 +1,8 @@
 <?php
 $conn = new mysqli("localhost", "root", "", "edge_academy");
-$id_kelas = isset($_GET['id_kelas']) ? intval($_GET['id_kelas']) : 0;
+header('Content-Type: application/json');
 
+$id_kelas = isset($_GET['id_kelas']) ? intval($_GET['id_kelas']) : 0;
 if ($id_kelas === 0) {
     echo json_encode([]);
     exit;
@@ -17,8 +18,4 @@ while ($row = $result->fetch_assoc()) {
     $mapel[] = $row;
 }
 
-header('Content-Type: application/json');
 echo json_encode($mapel);
-
-$stmt->close();
-$conn->close();
