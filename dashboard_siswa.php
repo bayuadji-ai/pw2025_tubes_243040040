@@ -90,7 +90,7 @@
 
         <a href="dashboard_siswa.php"><i class="bi bi-house-door"></i>Home</a>
         <a href="ruangmateri.php"><i class="bi bi-book"></i>RuangMateri</a>
-        <a href="#"><i class="bi bi-pencil"></i>RuangLatihan</a>
+        <a href="ruanglatihan.php"><i class="bi bi-pencil"></i>RuangLatihan</a>
         <a href="#"><i class="bi bi-person"></i>Profile</a>
         <a href="logout.php" class="red"><i class="bi bi-box-arrow-left"></i>Logout</a>
         <a href="#"><i class="bi bi-info-circle"></i>Tentang</a>

@@ -5,64 +5,59 @@ $kelas = $conn->query("SELECT * FROM tabel_kelas");
 
 <!DOCTYPE html>
 <html lang="id">
-
 <head>
     <meta charset="UTF-8">
-    <title>Ruang Materi</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <title>Ruang Latihan</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <style>
+        .mapel-container {
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+            margin-top: 20px;
+        }
+
         .mapel-card {
-            width: 140px;
-            border-radius: 12px;
+            width: 120px;
+            border: 1px solid #ccc;
+            border-radius: 10px;
             padding: 15px;
             text-align: center;
             cursor: pointer;
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-            transition: transform 0.2s;
-            background-color: #f8f9fa;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            transition: transform 0.2s, box-shadow 0.2s;
         }
 
         .mapel-card:hover {
-            transform: scale(1.05);
+            transform: translateY(-5px);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
         }
 
         .mapel-icon {
-            font-size: 32px;
-            margin-bottom: 8px;
+            font-size: 40px;
+            margin-bottom: 10px;
         }
 
         .mapel-name {
             font-weight: 600;
-            font-size: 15px;
-        }
-
-        .materi-scroll-container {
-            display: flex;
-            flex-wrap: nowrap;
-            overflow-x: auto;
-            gap: 1rem;
-            padding: 1rem 0;
-        }
-
-        .materi-scroll-container .card {
-            flex: 0 0 auto;
-            width: 18rem;
+            font-size: 16px;
+            color: #333;
         }
     </style>
 </head>
-
 <body class="container py-4">
-    <h2 class="mb-3">Pilih Kelas</h2>
-    <select id="kelas" class="form-select w-50 mb-4">
+    <h2>Pilih Kelas - Ruang Latihan</h2>
+
+    <label for="kelas">Kelas:</label>
+    <select id="kelas" class="form-select w-50 mb-3">
         <option value="">-- Pilih Kelas --</option>
         <?php while ($k = $kelas->fetch_assoc()) : ?>
             <option value="<?= $k['id_kelas'] ?>"><?= $k['nama_kelas'] ?></option>
         <?php endwhile; ?>
     </select>
 
-    <div id="mapelContainer" class="d-flex flex-wrap gap-3 mb-4"></div>
-
-    <div id="materiContainer"></div>
+    <div id="mapelContainer" class="mapel-container"></div>
+    <div id="latihanContainer" class="mt-4"></div>
 
     <script>
         function getIcon(nama) {
@@ -80,12 +75,12 @@ $kelas = $conn->query("SELECT * FROM tabel_kelas");
 
         const kelasSelect = document.getElementById("kelas");
         const mapelContainer = document.getElementById("mapelContainer");
-        const materiContainer = document.getElementById("materiContainer");
+        const latihanContainer = document.getElementById("latihanContainer");
 
         kelasSelect.addEventListener("change", () => {
             const idKelas = kelasSelect.value;
-            materiContainer.innerHTML = "";
             mapelContainer.innerHTML = "";
+            latihanContainer.innerHTML = "";
 
             if (!idKelas) return;
 
@@ -93,7 +88,7 @@ $kelas = $conn->query("SELECT * FROM tabel_kelas");
                 .then(res => res.json())
                 .then(mapelList => {
                     if (mapelList.length === 0) {
-                        mapelContainer.innerHTML = "<p>Tidak ada mapel untuk kelas ini.</p>";
+                        mapelContainer.innerHTML = "<p>Tidak ada mata pelajaran.</p>";
                         return;
                     }
 
@@ -106,34 +101,34 @@ $kelas = $conn->query("SELECT * FROM tabel_kelas");
                         `;
 
                         card.addEventListener("click", () => {
-                            materiContainer.innerHTML = `<p>Loading materi untuk <b>${mapel.nama_mapel}</b>...</p>`;
-                            fetch("get_materi.php?id_mapel=" + mapel.id_mapel)
+                            latihanContainer.innerHTML = <p>Loading latihan untuk ${mapel.nama_mapel}...</p>;
+
+                            fetch("get_latihan.php?id_mapel=" + mapel.id_mapel)
                                 .then(res => res.json())
-                                .then(materiList => {
-                                    if (materiList.length === 0) {
-                                        materiContainer.innerHTML = `<p>Belum ada materi untuk mapel ini.</p>`;
+                                .then(latihanList => {
+                                    if (latihanList.length === 0) {
+                                        latihanContainer.innerHTML = <p>Belum ada latihan untuk ${mapel.nama_mapel}.</p>;
                                         return;
                                     }
 
                                     let html = "";
-                                    materiList.forEach(materi => {
+                                    latihanList.forEach(latihan => {
                                         html += `
-                                            <div class="card" style="width: 18rem;">
-                                                <div class="card-body">
-                                                    <h5 class="card-title">${materi.judul_materi}</h5>
-                                                    <p class="card-text">${materi.isi_text.substring(0, 100)}...</p>
-                                                    <a href="#" class="btn btn-primary">Lihat Detail</a>
+                                            <div class="col-md-4">
+                                                <div class="card mb-3 shadow-sm">
+                                                    <div class="card-body">
+                                                        <h5 class="card-title">${latihan.judul_latihan}</h5>
+                                                        <p class="card-text">${latihan.isi_text.substring(0, 100)}...</p>
+                                                        <a href="#" class="btn btn-primary btn-sm">Kerjakan</a>
+                                                    </div>
                                                 </div>
-                                            </div>
-                                    `;
+                                            </div>`;
                                     });
 
-                                    html += '</div>';
-                                    materiContainer.innerHTML = html;
-                                    materiContainer.innerHTML = `<div class="materi-scroll-container">${html}</div>`;
+                                    latihanContainer.innerHTML = <div class="row">${html}</div>;
                                 })
                                 .catch(err => {
-                                    materiContainer.innerHTML = "<p>Gagal memuat materi.</p>";
+                                    latihanContainer.innerHTML = "<p>Gagal memuat latihan.</p>";
                                     console.error(err);
                                 });
                         });
@@ -142,11 +137,10 @@ $kelas = $conn->query("SELECT * FROM tabel_kelas");
                     });
                 })
                 .catch(err => {
-                    console.error("Fetch mapel error:", err);
-                    mapelContainer.innerHTML = `<p>Gagal memuat mapel.</p>`;
+                    mapelContainer.innerHTML = "<p>Gagal memuat mapel.</p>";
+                    console.error(err);
                 });
         });
     </script>
 </body>
-
 </html>
