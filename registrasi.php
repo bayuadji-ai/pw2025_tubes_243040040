@@ -44,26 +44,40 @@ if (isset($_POST["register"])) {
         }
 
         .container {
-            position: relative;
+            display: flex;
             width: 850px;
             height: 550px;
             background: #fff;
             border-radius: 30px;
+            overflow: hidden;
             box-shadow: 0 0 30px rgba(0, 0, 0, .2);
         }
 
         .form-box {
-            position: absolute;
-            right: 0;
             width: 50%;
-            height: 100%;
-            background: seagreen;
+            background: #000c22;
+            color: #fff;
             display: flex;
             align-items: center;
-            color: #333;
-            text-align: center;
+            justify-content: center;
             padding: 40px;
         }
+
+        .img-box {
+            width: 50%;
+            background-color: #081729;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .img-box img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 20px;
+        }
+
 
         form {
             width: 100%;
@@ -72,6 +86,8 @@ if (isset($_POST["register"])) {
         .container h1 {
             font-size: 36px;
             margin: -10px 0;
+            color: white;
+            text-align: center;
         }
 
         ul li {
@@ -117,15 +133,22 @@ if (isset($_POST["register"])) {
             color: #fff;
             font-weight: 600;
         }
+
+        .form-box a {
+            display: block;
+            margin-top: 15px;
+            color: #aad;
+            text-decoration: underline;
+            text-align: center;
+        }
     </style>
 </head>
 
 <body>
     <div class="container">
+        <!-- Form di kiri -->
         <div class="form-box regis">
-
             <form action="" method="post">
-
                 <h1>Daftar</h1>
                 <ul>
                     <li>
@@ -136,7 +159,7 @@ if (isset($_POST["register"])) {
 
                     <li>
                         <label for="email"></label>
-                        <input type="email" placeholder="Email" name="email" id="username">
+                        <input type="email" placeholder="Email" name="email" id="email">
                         <i class="bi bi-envelope"></i>
                     </li>
 
@@ -153,13 +176,18 @@ if (isset($_POST["register"])) {
                     </li>
 
                     <button type="submit" class="btn" name="register">Daftar Sekarang!</button>
-                    
-                </ul>
 
+                    <a href="index.php">Kembali Ke Beranda</a>
+                </ul>
             </form>
         </div>
 
+        <!-- Gambar di kanan -->
+        <div class="img-box">
+            <img src="img/daftar.jpeg" alt="Gambar Ilustrasi">
+        </div>
     </div>
+
 
 </body>
 

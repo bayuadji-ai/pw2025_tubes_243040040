@@ -15,7 +15,7 @@ function registrasi($data)
 
     // cek ketersediaan username
     $result = mysqli_query($conn, "SELECT username FROM users WHERE username = '$username'");
-    if(mysqli_fetch_assoc($result)) {
+    if (mysqli_fetch_assoc($result)) {
         echo "<script>
                 alert('username sudah terdaftar!')
               </script>";
@@ -35,7 +35,6 @@ function registrasi($data)
 
     // tambahkan user baru ke database
     mysqli_query($conn, "INSERT INTO users (username, email, password) VALUES ('$username', '$email', '$password')");
-    
+
     return mysqli_affected_rows($conn);
 }
-

@@ -24,14 +24,13 @@ if (isset($_POST["login"])) {
 
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="id">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login Page</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
-
 
     <!-- Style CSS-->
     <style>
@@ -55,24 +54,47 @@ if (isset($_POST["login"])) {
         }
 
         .container {
-            position: relative;
+            display: flex;
             width: 850px;
             height: 550px;
             background: #fff;
             border-radius: 30px;
+            overflow: hidden;
             box-shadow: 0 0 30px rgba(0, 0, 0, .2);
         }
 
-        .form-box {
-            position: absolute;
-            right: 0;
+        .container {
+            display: flex;
+            width: 850px;
+            height: 550px;
+            background: #fff;
+            border-radius: 30px;
+            overflow: hidden;
+            box-shadow: 0 0 30px rgba(0, 0, 0, .2);
+        }
+
+        .img-box {
             width: 50%;
-            height: 100%;
-            background: seagreen;
+            background-color: #081729;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .img-box img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 20px;
+        }
+
+        .form-box {
+            width: 50%;
+            background: #000c22;
+            color: #fff;
             display: flex;
             align-items: center;
-            color: #333;
-            text-align: center;
+            justify-content: center;
             padding: 40px;
         }
 
@@ -80,14 +102,21 @@ if (isset($_POST["login"])) {
             width: 100%;
         }
 
-        .container h1 {
+        .form-box h1 {
             font-size: 36px;
-            margin: -10px 0;
+            margin-bottom: 20px;
+            color: #fff;
+            text-align: center;
+        }
+
+        ul {
+            list-style: none;
+            padding: 0;
         }
 
         ul li {
             position: relative;
-            margin: 30px 0;
+            margin-bottom: 20px;
         }
 
         ul li input {
@@ -102,11 +131,6 @@ if (isset($_POST["login"])) {
             font-weight: 500;
         }
 
-        ul li input::placeholder {
-            color: #888;
-            font-weight: 400;
-        }
-
         ul li i {
             position: absolute;
             right: 20px;
@@ -116,34 +140,57 @@ if (isset($_POST["login"])) {
             color: #888;
         }
 
+        ul li a {
+            display: inline-block;
+            margin-top: 5px;
+            color: #a0c4ff;
+            text-decoration: none;
+        }
+
         .btn {
             width: 100%;
             height: 48px;
             background: #7494ec;
             border-radius: 8px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, .1);
             border: none;
             cursor: pointer;
             font-size: 16px;
             color: #fff;
             font-weight: 600;
+            margin-top: 10px;
         }
 
-        ul a {
-            margin-top: 20px;
+        .form-box a {
+            display: block;
+            margin-top: 15px;
+            color: #aad;
+            text-decoration: underline;
+            text-align: center;
+        }
+
+        .error-msg {
+            color: #f88;
+            font-style: italic;
+            margin-bottom: 15px;
         }
     </style>
 </head>
-<!-- akhir style -->
 
 <body>
+
+
     <div class="container">
+        <div class="img-box">
+            <img src="img/login.jpeg" alt="Ilustrasi Login">
+        </div>
+
+
         <div class="form-box login">
             <form action="" method="post">
                 <h1>Login</h1>
 
                 <?php if (isset($error)) : ?>
-                    <p style="color: red; font-style:italic" ;>USERNAME ATAU PASSWORD SALAH!</p>
+                    <p class="error-msg">USERNAME ATAU PASSWORD SALAH!</p>
                 <?php endif; ?>
 
                 <ul>
@@ -158,17 +205,16 @@ if (isset($_POST["login"])) {
                         <input type="password" placeholder="password" name="password" id="password">
                         <i class="bi bi-lock"></i>
                     </li>
-
-                    <button type="submit" class="btn" name="login">Login</button>
-
-                    <a href="index.php" class="btn">Kembali Ke Beranda</a>
-
                 </ul>
+
+                <a href="registrasi.php">Belum Punya Akun? Daftar Sekarang</a>
+
+                <button type="submit" class="btn" name="login">Login</button>
+
+                <a href="index.php">Kembali Ke Beranda</a>
             </form>
         </div>
-
     </div>
-
 </body>
 
 </html>
