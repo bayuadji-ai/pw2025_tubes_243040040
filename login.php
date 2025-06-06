@@ -1,5 +1,15 @@
 <?php
+session_start();
 require 'functions.php';
+
+if (isset($_SESSION["login"])) {
+    if ($_SESSION["role"] === "admin") {
+        header("Location: dashboard_admin.php");
+    } else {
+        header("Location: dashboard_siswa.php");
+    }
+    exit;
+}
 
 if (isset($_POST["login"])) {
     $username = $_POST["username"];
@@ -7,13 +17,19 @@ if (isset($_POST["login"])) {
 
     $result = mysqli_query($conn, "SELECT * FROM users WHERE username = '$username'");
 
-    // cek username
     if (mysqli_num_rows($result) === 1) {
-
-        // cek password
         $row = mysqli_fetch_assoc($result);
+
         if (password_verify($password, $row["password"])) {
-            header("Location: dashboard_siswa.php");
+            $_SESSION["login"] = true;
+            $_SESSION["username"] = $row["username"];
+            $_SESSION["role"] = $row["role"];
+
+            if ($row["role"] === "admin") {
+                header("Location: dashboard_admin.php");
+            } else {
+                header("Location: dashboard_siswa.php");
+            }
             exit;
         }
     }

@@ -92,7 +92,9 @@
                 <div class="col-lg-6">
                     <h1 class="display-5 fw-bold mb-4">Selamat Datang di <span class="text-primary">EdgeAcademy</span></h1>
                     <p class="lead mb-4">
-                        Platform pembelajaran interaktif yang dirancang untuk siswa, guru, dan siapa pun yang ingin terus belajar. Temukan berbagai kursus, materi, dan fitur yang mendukung pembelajaran digital.
+                        EdgeAcademy adalah platform belajar online untuk siswa SMA IPA dan IPS, menyediakan materi pelajaran dan latihan soal sesuai kurikulum. Kami hadir untuk membantu siswa belajar lebih mudah, mandiri, dan siap menghadapi ujian kapan saja, di mana saja.
+
+
                     </p>
                     <a href="registrasi.php" class="btn btn-outline-primary btn-lg">Daftar Sekarang</a>
                 </div>
@@ -111,48 +113,48 @@
                 <div class="col-md-6 col-lg-4">
                     <div class="card feature-card h-100">
                         <div class="card-body">
-                            <h5 class="card-title">Kursus & Sertifikasi</h5>
-                            <p class="card-text">Pelajari berbagai topik dan raih sertifikat resmi untuk menambah nilai kompetensimu.</p>
+                            <h5 class="card-title">Materi Pembelajaran Terstruktur</h5>
+                            <p class="card-text">Akses materi pelajaran IPA & IPS yang lengkap dan sesuai kurikulum nasional.</p>
                         </div>
                     </div>
                 </div>
                 <div class="col-md-6 col-lg-4">
                     <div class="card feature-card h-100">
                         <div class="card-body">
-                            <h5 class="card-title">Materi Lengkap</h5>
-                            <p class="card-text">Materi pembelajaran dari tingkat SD hingga SMA yang terus diperbarui sesuai kurikulum.</p>
+                            <h5 class="card-title">Latihan Soal interaktif</h5>
+                            <p class="card-text">Ribuan soal latihan dengan pembahasan untuk menguji dan memperkuat pemahaman siswa.</p>
                         </div>
                     </div>
                 </div>
                 <div class="col-md-6 col-lg-4">
                     <div class="card feature-card h-100">
                         <div class="card-body">
-                            <h5 class="card-title">Forum Diskusi</h5>
-                            <p class="card-text">Berdiskusi langsung dengan pelajar lain, bertanya dan berbagi ilmu dalam komunitas positif.</p>
+                            <h5 class="card-title">Kelas Berdasarkan Jurusan & Tingkat</h5>
+                            <p class="card-text">Konten disesuaikan berdasarkan kelas(X,XI,XII) dan jurusan (IPA/IPS) agar lebih relevan.</p>
                         </div>
                     </div>
                 </div>
                 <div class="col-md-6 col-lg-4">
                     <div class="card feature-card h-100">
                         <div class="card-body">
-                            <h5 class="card-title">Kelas Virtual</h5>
-                            <p class="card-text">Ruang interaktif bagi guru dan siswa untuk belajar secara daring dengan mudah dan nyaman.</p>
+                            <h5 class="card-title">Rangkuman & Infografis</h5>
+                            <p class="card-text">Ringkasan materi penting dan infografis visual untuk membantu siswa belajar lebih cepat.</p>
                         </div>
                     </div>
                 </div>
                 <div class="col-md-6 col-lg-4">
                     <div class="card feature-card h-100">
                         <div class="card-body">
-                            <h5 class="card-title">Statistik Belajar</h5>
-                            <p class="card-text">Pantau perkembanganmu lewat grafik belajar, skor ujian, dan aktivitas harian secara real-time.</p>
+                            <h5 class="card-title">Navigasi Belajar Sederhana</h5>
+                            <p class="card-text">Antarmuka yang dirancang simpel dan intuitif agar siswa dapat fokus belajar tanpa kebingungan teknis.</p>
                         </div>
                     </div>
                 </div>
                 <div class="col-md-6 col-lg-4">
                     <div class="card feature-card h-100">
                         <div class="card-body">
-                            <h5 class="card-title">Statistik Belajar</h5>
-                            <p class="card-text">Pantau perkembanganmu lewat grafik belajar, skor ujian, dan aktivitas harian secara real-time.</p>
+                            <h5 class="card-title">Akses Fleksibel Kapan Saja</h5>
+                            <p class="card-text">Belajar bisa dilakukan di mana saja dan kapan saja lewat perangkat dekstop atau mobile.</p>
                         </div>
                     </div>
                 </div>
@@ -165,7 +167,8 @@
         <div class="container">
             <h2 class="text-center fw-bold mb-4">Tentang EdgeAcademy</h2>
             <p class="text-center mx-auto" style="max-width: 700px;">
-                EdgeAcademy adalah platform pembelajaran daring berbasis teknologi yang menyediakan sarana belajar interaktif, fleksibel, dan terjangkau untuk seluruh pelajar di Indonesia. Kami percaya bahwa pendidikan berkualitas harus bisa diakses siapa saja, di mana saja.
+                EdgeAcademy adalah platform edukasi untuk siswa SMA IPA dan IPS yang menyediakan materi pembelajaran dan latihan soal berdasarkan kelas dan jurusan. Siswa dapat memilih kelas, melihat mata pelajaran yang sesuai, lalu mengakses materi atau mengerjakan soal secara mandiri. Sistem akan menyesuaikan konten secara otomatis agar proses belajar lebih fokus dan terarah.
+
             </p>
         </div>
     </section>
