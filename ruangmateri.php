@@ -10,6 +10,8 @@ $kelas = $conn->query("SELECT * FROM tabel_kelas");
     <meta charset="UTF-8">
     <title>Ruang Materi</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+
     <style>
         .mapel-card {
             width: 140px;
@@ -52,7 +54,13 @@ $kelas = $conn->query("SELECT * FROM tabel_kelas");
 </head>
 
 <body class="container py-4">
-    <h2 class="mb-3">Pilih Kelas</h2>
+
+
+    <a href="dashboard_siswa.php" class="btn btn-outline-secondary mb-3">
+        <i class="bi bi-arrow-left-circle"></i> Kembali ke Dashboard
+    </a>
+
+    <h2 class="mb-3">Pilih Kelas - RuangMateri</h2>
     <select id="kelas" class="form-select w-50 mb-4">
         <option value="">-- Pilih Kelas --</option>
         <?php while ($k = $kelas->fetch_assoc()) : ?>
