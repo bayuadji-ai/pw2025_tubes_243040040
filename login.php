@@ -188,6 +188,7 @@ if (isset($_POST["login"])) {
             color: #f88;
             font-style: italic;
             margin-bottom: 15px;
+            text-align: center;
         }
     </style>
 </head>
