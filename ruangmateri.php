@@ -11,6 +11,7 @@ $kelas = $conn->query("SELECT * FROM tabel_kelas");
     <title>Ruang Materi</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
+    <link rel="shortcut icon" href="img/icon.jpeg" type="image/x-icon">
 
     <style>
         .mapel-card {
@@ -40,9 +41,41 @@ $kelas = $conn->query("SELECT * FROM tabel_kelas");
             color: #333;
         }
 
+
+        /* BREAKPOINT */
         @media (max-width: 576px) {
             .mapel-card {
                 width: 100%;
+            }
+        }
+
+        @media (max-width: 450px) {
+            body {
+                padding: 10px;
+            }
+
+            .container {
+                padding: 15px;
+            }
+
+            h2 {
+                font-size: 20px;
+            }
+        }
+
+        @media (max-width: 367px) {
+            h2 {
+                font-size: 18px;
+            }
+
+            button {
+                font-size: 14px;
+            }
+
+            input,
+            textarea,
+            select {
+                font-size: 14px;
             }
         }
     </style>

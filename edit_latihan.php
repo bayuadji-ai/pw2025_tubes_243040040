@@ -40,6 +40,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['submit'])) {
     <meta charset="UTF-8">
     <title>Edit Materi</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="shortcut icon" href="img/icon.jpeg" type="image/x-icon">
     <style>
         body {
             background-color: #f8f9fa;
@@ -83,7 +84,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['submit'])) {
                         <input type="text" name="judul" id="judul" class="form-control" value="<?= htmlspecialchars($materi['judul_latihan']) ?>" required>
                     </div>
                     <div class="mb-3">
-                        <label for="isi" class="form-label">Isi Materi</label>
+                        <label for="isi" class="form-label">Deskripsi</label>
                         <textarea name="isi" id="isi" class="form-control" rows="6" required><?= htmlspecialchars($materi['isi_text']) ?></textarea>
                     </div>
                     <div class="mb-3">
