@@ -214,13 +214,13 @@ if (isset($_POST["login"])) {
                 <ul>
                     <li>
                         <label for="username"></label>
-                        <input type="text" placeholder="username" name="username" id="username">
+                        <input type="text" placeholder="username" name="username" id="username" required>
                         <i class="bi bi-person"></i>
                     </li>
 
                     <li>
                         <label for="password"></label>
-                        <input type="password" placeholder="password" name="password" id="password">
+                        <input type="password" placeholder="password" name="password" id="password" required>
                         <i class="bi bi-lock"></i>
                     </li>
                 </ul>

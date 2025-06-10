@@ -154,25 +154,25 @@ if (isset($_POST["register"])) {
                 <ul>
                     <li>
                         <label for="username"></label>
-                        <input type="text" placeholder="Username" name="username" id="username">
+                        <input type="text" placeholder="Username" name="username" id="username" required>
                         <i class="bi bi-person"></i>
                     </li>
 
                     <li>
                         <label for="email"></label>
-                        <input type="email" placeholder="Email" name="email" id="email">
+                        <input type="email" placeholder="Email" name="email" id="email" required>
                         <i class="bi bi-envelope"></i>
                     </li>
 
                     <li>
                         <label for="password"></label>
-                        <input type="password" placeholder="Password" name="password" id="password">
+                        <input type="password" placeholder="Password" name="password" id="password" required>
                         <i class="bi bi-lock"></i>
                     </li>
 
                     <li>
                         <label for="password2"></label>
-                        <input type="password" placeholder="Konfirmasi Password" name="password2" id="password2">
+                        <input type="password" placeholder="Konfirmasi Password" name="password2" id="password2" required>
                         <i class="bi bi-lock"></i>
                     </li>
 

@@ -91,7 +91,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['submit'])) {
                         </select>
                     </div>
                     <button type="submit" name="submit" class="btn btn-primary">Simpan</button>
-                    <a href="dashboard_admin.php" class="btn btn-secondary">Kembali</a>
+                    <a href="manajemen_soal.php" class="btn btn-secondary">Kembali</a>
                 </form>
             </div>
         </div>
