@@ -213,9 +213,9 @@ if (!isset($_SESSION["login"])) {
             <a href="dashboard_siswa.php" class="active"><i class="bi bi-house-door"></i> Home</a>
             <a href="ruangmateri.php"><i class="bi bi-book"></i> RuangMateri</a>
             <a href="ruanglatihan.php"><i class="bi bi-pencil"></i> RuangLatihan</a>
-            <a href="modul_siswa.php"><i class="bi bi-pencil"></i> Modul Belajar</a>
+            <a href="modul_siswa.php"><i class="bi bi-file-earmark-fill"></i></i> Modul Belajar</a>
             <a href="logout.php" class="red"><i class="bi bi-box-arrow-left"></i> Logout</a>
-            <a href="#"><i class="bi bi-info-circle"></i> Tentang</a>
+            <a href="#"><i class="bi bi-chat-square-text"></i></i> Contact</a>
         </div>
 
         <!-- Konten Utama -->
