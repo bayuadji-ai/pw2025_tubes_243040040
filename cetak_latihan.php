@@ -100,7 +100,7 @@ $latihan = mysqli_query($conn, $query);
 
 <body>
 
-    <h2>Daftar Materi</h2>
+    <h2>Daftar Soal</h2>
 
     <div class="btn-container">
         <a href="manajemen_soal.php" class="btn btn-back">← Kembali ke Manajemen Latihan</a>
