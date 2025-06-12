@@ -25,7 +25,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['submit'])) {
         $stmt = $conn->prepare("UPDATE tabel_latihan SET judul_latihan = ?, isi_text = ?, id_mapel = ? WHERE id_latihan = ?");
         $stmt->bind_param("ssii", $judul, $isi, $id_mapel, $id);
         $stmt->execute();
-        header("Location: manajemen_latihan.php");
+        header("Location: manajemen_soal.php");
         exit;
     } else {
         $error = "Semua field wajib diisi!";
@@ -99,7 +99,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['submit'])) {
                         </select>
                     </div>
                     <button type="submit" name="submit" class="btn btn-warning">Update</button>
-                    <a href="manajemen_latihan.php" class="btn btn-secondary">Batal</a>
+                    <a href="manajemen_soal.php" class="btn btn-secondary">Batal</a>
                 </form>
             </div>
         </div>

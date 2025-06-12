@@ -1,6 +1,5 @@
 <?php
 $conn = new mysqli("localhost", "root", "", "edge_academy");
-$data = $conn->query("SELECT * FROM modul_buku");
 ?>
 
 <!DOCTYPE html>
@@ -20,34 +19,39 @@ $data = $conn->query("SELECT * FROM modul_buku");
             <i class="bi bi-arrow-left-circle"></i> Kembali ke Dashboard
         </a>
         <br>
+
         <a href="tambah_modul.php" class="btn btn-success btn-sm mb-2">+ Tambah Modul</a>
-        <table class="table table-bordered">
-            <thead>
-                <tr>
-                    <th>No</th>
-                    <th>Judul</th>
-                    <th>Deskripsi</th>
-                    <th>Gambar</th>
-                    <th>Aksi</th>
-                </tr>
-            </thead>
-            <tbody>
-                <?php $no = 1;
-                while ($row = $data->fetch_assoc()): ?>
-                    <tr>
-                        <td><?= $no++ ?></td>
-                        <td><?= htmlspecialchars($row['judul']) ?></td>
-                        <td><?= htmlspecialchars($row['deskripsi']) ?></td>
-                        <td><img src="upload/<?= $row['gambar'] ?>" width="100"></td>
-                        <td>
-                            <a href="edit_modul.php?id=<?= $row['id'] ?>" class="btn btn-warning btn-sm">Edit</a>
-                            <a href="hapus_modul.php?id=<?= $row['id'] ?>" class="btn btn-danger btn-sm" onclick="return confirm('Hapus data?')">Hapus</a>
-                        </td>
-                    </tr>
-                <?php endwhile; ?>
-            </tbody>
-        </table>
+        <br>
+
+        <form class="row g-2 mb-3" onsubmit="return false;">
+            <div class="col-md-6">
+                <input type="text" class="form-control" id="keyword" placeholder="🔍 Cari modul...">
+            </div>
+        </form>
+
+
+        <div id="tabel-container">
+            <?php include 'ajax/modul_search.php'; ?>
+        </div>
     </div>
+
+    <script>
+        document.getElementById('keyword').addEventListener('keyup', function() {
+            let keyword = this.value;
+
+            let xhr = new XMLHttpRequest();
+            xhr.open("POST", "ajax/modul_search.php", true);
+            xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+
+            xhr.onload = function() {
+                if (xhr.status === 200) {
+                    document.getElementById("tabel-container").innerHTML = xhr.responseText;
+                }
+            };
+
+            xhr.send("keyword=" + encodeURIComponent(keyword));
+        });
+    </script>
 </body>
 
 </html>

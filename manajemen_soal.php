@@ -30,7 +30,7 @@ $latihan = mysqli_query($conn, $query);
 
         <form class="row g-2 mb-3" id="search-form" onsubmit="return false;">
             <div class="col-9 col-md-6">
-                <input type="text" class="form-control" id="keyword" placeholder="🔍 Cari materi...">
+                <input type="text" class="form-control" id="keyword" placeholder="🔍 Cari latihan...">
             </div>
             <div class="col-3 col-md-2">
                 <button class="btn btn-primary w-100" id="btn-cari">Cari</button>

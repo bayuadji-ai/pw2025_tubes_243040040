@@ -5,7 +5,7 @@ $keyword = $_GET["keyword"] ?? "";
 
 $query = "SELECT tabel_latihan.*, tabel_mapel.nama_mapel, tabel_kelas.nama_kelas 
           FROM tabel_latihan
-          JOIN tabel_mapel ON tabel_materi.id_mapel = tabel_mapel.id_mapel
+          JOIN tabel_mapel ON tabel_latihan.id_mapel = tabel_mapel.id_mapel
           JOIN tabel_kelas ON tabel_mapel.id_kelas = tabel_kelas.id_kelas
           WHERE 
               judul_latihan LIKE ? OR 
@@ -33,7 +33,7 @@ $result = $stmt->get_result();
         </thead>
         <tbody>
             <?php $i = 1;
-            while ($row = mysqli_fetch_assoc($latihan)) : ?>
+            while ($row = $result->fetch_assoc()) : ?>
                 <tr>
                     <td><?= $i++ ?></td>
                     <td><?= $row['judul_latihan'] ?></td>
