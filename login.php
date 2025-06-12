@@ -43,13 +43,11 @@ if (isset($_POST["login"])) {
 <html lang="id">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Login Page</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
     <link rel="shortcut icon" href="img/icon.jpeg" type="image/x-icon">
-
-    <!-- Style CSS-->
     <style>
         * {
             margin: 0;
@@ -64,30 +62,18 @@ if (isset($_POST["login"])) {
             align-items: center;
             min-height: 100vh;
             background: linear-gradient(90deg, #e2e2e2, #c9d6ff);
-        }
-
-        label {
-            display: block;
+            padding: 20px;
         }
 
         .container {
             display: flex;
             width: 850px;
+            max-width: 100%;
             height: 550px;
             background: #fff;
             border-radius: 30px;
             overflow: hidden;
-            box-shadow: 0 0 30px rgba(0, 0, 0, .2);
-        }
-
-        .container {
-            display: flex;
-            width: 850px;
-            height: 550px;
-            background: #fff;
-            border-radius: 30px;
-            overflow: hidden;
-            box-shadow: 0 0 30px rgba(0, 0, 0, .2);
+            box-shadow: 0 0 30px rgba(0, 0, 0, 0.2);
         }
 
         .img-box {
@@ -113,6 +99,8 @@ if (isset($_POST["login"])) {
             align-items: center;
             justify-content: center;
             padding: 40px;
+            position: relative;
+            z-index: 2;
         }
 
         form {
@@ -120,9 +108,8 @@ if (isset($_POST["login"])) {
         }
 
         .form-box h1 {
-            font-size: 36px;
+            font-size: 32px;
             margin-bottom: 20px;
-            color: #fff;
             text-align: center;
         }
 
@@ -145,7 +132,6 @@ if (isset($_POST["login"])) {
             outline: none;
             font-size: 16px;
             color: #333;
-            font-weight: 500;
         }
 
         ul li i {
@@ -155,13 +141,6 @@ if (isset($_POST["login"])) {
             transform: translateY(-50%);
             font-size: 20px;
             color: #888;
-        }
-
-        ul li a {
-            display: inline-block;
-            margin-top: 5px;
-            color: #a0c4ff;
-            text-decoration: none;
         }
 
         .btn {
@@ -191,17 +170,48 @@ if (isset($_POST["login"])) {
             margin-bottom: 15px;
             text-align: center;
         }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .container {
+                flex-direction: column;
+                height: auto;
+                position: relative;
+            }
+
+            .img-box {
+                display: none;
+                /* hide image box */
+            }
+
+            .container::before {
+                content: "";
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background-image: url('img/login.jpeg');
+                background-size: cover;
+                background-position: center;
+                opacity: 0.15;
+                z-index: 1;
+            }
+
+            .form-box {
+                width: 100%;
+                padding: 30px 20px;
+                background-color: rgba(0, 12, 34, 0.95);
+            }
+        }
     </style>
 </head>
 
 <body>
-
-
     <div class="container">
         <div class="img-box">
             <img src="img/login.jpeg" alt="Ilustrasi Login">
         </div>
-
 
         <div class="form-box login">
             <form action="" method="post">
@@ -213,22 +223,17 @@ if (isset($_POST["login"])) {
 
                 <ul>
                     <li>
-                        <label for="username"></label>
-                        <input type="text" placeholder="username" name="username" id="username" required>
+                        <input type="text" placeholder="Username" name="username" id="username" required>
                         <i class="bi bi-person"></i>
                     </li>
-
                     <li>
-                        <label for="password"></label>
-                        <input type="password" placeholder="password" name="password" id="password" required>
+                        <input type="password" placeholder="Password" name="password" id="password" required>
                         <i class="bi bi-lock"></i>
                     </li>
                 </ul>
 
                 <a href="registrasi.php">Belum Punya Akun? Daftar Sekarang</a>
-
                 <button type="submit" class="btn" name="login">Login</button>
-
                 <a href="index.php">Kembali Ke Beranda</a>
             </form>
         </div>
