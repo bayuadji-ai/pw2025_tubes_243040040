@@ -37,11 +37,6 @@ $result = $conn->query("SELECT * FROM modul_buku LIMIT $start, $limit");
 
         <!-- Search dan Pagination -->
         <div class="d-flex justify-content-between align-items-center mb-4">
-            <form class="d-flex" method="get" role="search">
-                <input class="form-control me-2" type="search" name="search" placeholder="Cari modul..." aria-label="Search">
-                <button class="btn btn-outline-success" type="submit">Cari</button>
-            </form>
-
             <nav>
                 <ul class="pagination mb-0">
                     <?php for ($i = 1; $i <= $totalPages; $i++): ?>

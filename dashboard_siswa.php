@@ -171,6 +171,50 @@ if (!isset($_SESSION["login"])) {
             border-left-color: #9c27b0;
         }
 
+        .tools-belajar {
+            background: url('img/dashbor.jpeg') no-repeat center center;
+            background-size: cover;
+            padding: 40px 0;
+            margin-bottom: 40px;
+            margin-top: 20px;
+        }
+
+        .overlay-box {
+            max-width: 800px;
+            margin: auto;
+            background-color: rgba(0, 0, 0, 0.6);
+            padding: 30px;
+            border-radius: 16px;
+            color: white;
+            text-align: center;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        .overlay-box h2 {
+            font-size: 24px;
+            margin-bottom: 10px;
+        }
+
+        .overlay-box ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .overlay-box li {
+            margin: 10px 0;
+            font-size: 16px;
+        }
+
+        .overlay-box a {
+            color: #ffeb3b;
+            text-decoration: none;
+        }
+
+        .overlay-box a:hover {
+            text-decoration: underline;
+        }
+
         /* Desktop layout */
         @media (min-width: 768px) {
             .main-wrapper {
@@ -213,9 +257,9 @@ if (!isset($_SESSION["login"])) {
             <a href="dashboard_siswa.php" class="active"><i class="bi bi-house-door"></i> Home</a>
             <a href="ruangmateri.php"><i class="bi bi-book"></i> RuangMateri</a>
             <a href="ruanglatihan.php"><i class="bi bi-pencil"></i> RuangLatihan</a>
-            <a href="modul_siswa.php"><i class="bi bi-file-earmark-fill"></i></i> Modul Belajar</a>
+            <a href="modul_siswa.php"><i class="bi bi-journal-text"></i></i> Modul Belajar</a>
             <a href="logout.php" class="red"><i class="bi bi-box-arrow-left"></i> Logout</a>
-            <a href="#"><i class="bi bi-chat-square-text"></i></i> Contact</a>
+            <a href="profile_siswa.php"><i class="bi bi-person-circle"></i></i> Profile</a>
         </div>
 
         <!-- Konten Utama -->
@@ -227,6 +271,19 @@ if (!isset($_SESSION["login"])) {
                 </div>
                 <img src="https://cdn-icons-png.flaticon.com/512/201/201623.png" alt="Siswa" />
             </div>
+
+            <section class="tools-belajar">
+                <div class="overlay-box">
+                    <h2>🛠️ Tools Belajar Pilihan</h2>
+                    <p>Gunakan alat bantu ini untuk mempercepat pemahamanmu!</p>
+                    <ul>
+                        <li>🤖 <a href="https://chat.openai.com/" target="_blank">Tool AI Bantu Tugas</a></li>
+                        <li>🧮 <a href="https://www.desmos.com/scientific" target="_blank">Kalkulator Ilmiah Online</a></li>
+                        <li>📖 <a href="https://buku.kemdikbud.go.id/" target="_blank">Buku Gratis Kemdikbud</a></li>
+                        <li>🎙️ <a href="https://open.spotify.com/show/3U3tdsZidqHPvDr2kZwrzb" target="_blank">Podcast Pendidikan Rekomendasi</a></li>
+                    </ul>
+                </div>
+            </section>
 
             <div class="menu-grid">
                 <div class="card-menu pink">
@@ -250,8 +307,8 @@ if (!isset($_SESSION["login"])) {
             <div class="mt-5 p-4 rounded" style="background-color: #e3f2fd;">
                 <h4><i class="bi bi-chat-quote text-primary"></i> Kutipan Hari Ini</h4>
                 <blockquote class="blockquote mt-3 mb-0">
-                    <p>"Belajar bukan tentang menjadi yang terbaik, tapi menjadi lebih baik dari dirimu yang kemarin."</p>
-                    <footer class="blockquote-footer">Anonim</footer>
+                    <p>"Belajarlah dari masa lalu, hiduplah untuk hari ini, dan berharaplah untuk hari esok. Yang penting adalah jangan berhenti bertanya."</p>
+                    <footer class="blockquote-footer">Albert Einstein</footer>
                 </blockquote>
             </div>
 
@@ -301,8 +358,8 @@ if (!isset($_SESSION["login"])) {
                         <div class="card shadow-sm border-start border-4 border-warning">
                             <div class="card-body">
                                 <h6 class="card-subtitle mb-1 text-muted">Kamis, 12 Juni</h6>
-                                <h5 class="card-title">Presentasi Kelompok IPA</h5>
-                                <p class="card-text">Tunjukkan hasil risetmu tentang Sistem Peredaran Darah. Siapkan slide dan latihan presentasi.</p>
+                                <h5 class="card-title">Belajar Seru Dengan JavaScript</h5>
+                                <p class="card-text">Jangan lupa lihat modul pemrograman terbaru yang membahas tentang JavaScript.</p>
                             </div>
                         </div>
                     </div>

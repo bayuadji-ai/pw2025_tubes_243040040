@@ -18,6 +18,16 @@ $materi = mysqli_query($conn, $query);
     <title>Dashboard Admin</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
+    <style>
+        @media print {
+
+            .btn,
+            .form-control,
+            .aksi {
+                display: none;
+            }
+        }
+    </style>
 </head>
 
 <body class="container mt-4">
@@ -49,7 +59,7 @@ $materi = mysqli_query($conn, $query);
                             <th>Judul Materi</th>
                             <th>Kelas</th>
                             <th>Mapel</th>
-                            <th>Aksi</th>
+                            <th class="aksi">Aksi</th>
                         </tr>
                     </thead>
                     <tbody>

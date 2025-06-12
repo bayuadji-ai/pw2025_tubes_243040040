@@ -22,6 +22,7 @@ if (isset($_POST["login"])) {
 
         if (password_verify($password, $row["password"])) {
             $_SESSION["login"] = true;
+            $_SESSION["user_id"] = $row["id"];
             $_SESSION["username"] = $row["username"];
             $_SESSION["role"] = $row["role"];
 
