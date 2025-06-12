@@ -280,7 +280,6 @@ if (!isset($_SESSION["login"])) {
                         <li>🤖 <a href="https://chat.openai.com/" target="_blank">Tool AI Bantu Tugas</a></li>
                         <li>🧮 <a href="https://www.desmos.com/scientific" target="_blank">Kalkulator Ilmiah Online</a></li>
                         <li>📖 <a href="https://buku.kemdikbud.go.id/" target="_blank">Buku Gratis Kemdikbud</a></li>
-                        <li>🎙️ <a href="https://open.spotify.com/show/3U3tdsZidqHPvDr2kZwrzb" target="_blank">Podcast Pendidikan Rekomendasi</a></li>
                     </ul>
                 </div>
             </section>
