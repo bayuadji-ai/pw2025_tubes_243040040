@@ -26,6 +26,10 @@ $materi = mysqli_query($conn, $query);
             .aksi {
                 display: none;
             }
+
+            h4 {
+                text-align: center;
+            }
         }
     </style>
 </head>
@@ -38,6 +42,7 @@ $materi = mysqli_query($conn, $query);
         </a>
         <br>
         <a href="tambah_materi.php" class="btn btn-success btn-sm mb-2">+ Tambah Materi</a>
+        <a href="cetak_materi.php" class="btn btn-success btn-sm mb-2">Cetak PDF</a>
         <br>
 
         <form class="row g-2 mb-3" id="search-form" onsubmit="return false;">
