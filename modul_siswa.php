@@ -21,22 +21,19 @@ $result = $conn->query("SELECT * FROM modul_buku LIMIT $start, $limit");
 <head>
     <meta charset="UTF-8">
     <title>Modul Belajar</title>
+    <link rel="shortcut icon" href="img/icon.jpeg" type="image/x-icon">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css" rel="stylesheet">
 </head>
 
 <body class="bg-light">
     <div class="container py-4">
-
-        <!-- Tombol Kembali -->
         <a href="dashboard_siswa.php" class="btn btn-outline-secondary mb-3">
             <i class="bi bi-arrow-left-circle"></i> Kembali ke Dashboard
         </a>
 
-        <!-- Judul -->
         <h2 class="mb-4 text-center">Modul Belajar</h2>
 
-        <!-- Input Live Search -->
         <div class="input-group mb-4">
             <input type="text" id="search" class="form-control" placeholder="Cari modul...">
             <span class="input-group-text bg-primary text-white"><i class="bi bi-search"></i></span>
@@ -54,7 +51,6 @@ $result = $conn->query("SELECT * FROM modul_buku LIMIT $start, $limit");
             </nav>
         </div>
 
-        <!-- Kartu Modul -->
         <div class="row g-4" id="modul-container">
             <?php if ($result->num_rows > 0): ?>
                 <?php while ($modul = $result->fetch_assoc()): ?>
@@ -80,7 +76,6 @@ $result = $conn->query("SELECT * FROM modul_buku LIMIT $start, $limit");
 
     </div>
 
-    <!-- AJAX Script -->
     <script>
         document.getElementById('search').addEventListener('input', function() {
             const keyword = this.value;

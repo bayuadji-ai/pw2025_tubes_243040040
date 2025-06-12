@@ -15,6 +15,8 @@ $materi = mysqli_query($conn, $query);
 <head>
     <meta charset="UTF-8">
     <title>Data Materi</title>
+    <link rel="shortcut icon" href="img/icon.jpeg" type="image/x-icon">
+
     <style>
         body {
             font-family: Arial, sans-serif;
