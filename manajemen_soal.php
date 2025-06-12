@@ -28,7 +28,8 @@ $latihan = mysqli_query($conn, $query);
         </a>
         <br>
         <a href="tambah_latihan.php" class="btn btn-success btn-sm mb-2">+ Tambah Latihan</a>
-        <a href="cetak_latihan.php" class="btn btn-success btn-sm mb-2">Cetak PDF</a>
+        <br>
+        <a href="cetak_latihan.php" class="btn btn-danger btn-sm">Print</a>
 
         <form class="row g-2 mb-3" id="search-form" onsubmit="return false;">
             <div class="col-9 col-md-6">
@@ -61,8 +62,8 @@ $latihan = mysqli_query($conn, $query);
                                 <td><?= $row['nama_kelas'] ?></td>
                                 <td><?= $row['nama_mapel'] ?></td>
                                 <td>
-                                    <a href="edit_latihan.php?id=<?= $row['id_latihan'] ?>" class="btn btn-warning btn-sm">Edit</a>
-                                    <a href="hapus_latihan.php?id=<?= $row['id_latihan'] ?>" class="btn btn-danger btn-sm" onclick="return confirm('Yakin?')">Hapus</a>
+                                    <a href="edit_latihan.php?id=<?= $row['id_latihan'] ?>" class="btn btn-warning btn-sm"><i class="bi bi-pencil-square"></i></a>
+                                    <a href="hapus_latihan.php?id=<?= $row['id_latihan'] ?>" class="btn btn-danger btn-sm" onclick="return confirm('Yakin?')"><i class="bi bi-trash3"></i></a>
                                 </td>
                             </tr>
                         <?php endwhile; ?>

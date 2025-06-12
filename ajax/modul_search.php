@@ -26,9 +26,9 @@ $data = $conn->query($sql);
                     <td><?= htmlspecialchars($row['deskripsi']) ?></td>
                     <td><img src="upload/<?= $row['gambar'] ?>" width="100"></td>
                     <td>
-                        <a href="edit_modul.php?id=<?= $row['id'] ?>" class="btn btn-warning btn-sm">Edit</a>
+                        <a href="edit_modul.php?id=<?= $row['id'] ?>" class="btn btn-warning btn-sm"><i class="bi bi-pencil-square"></i></a>
                         <a href="hapus_modul.php?id=<?= $row['id'] ?>"
-                            class="btn btn-danger btn-sm" onclick="return confirm('Hapus data?')">Hapus</a>
+                            class="btn btn-danger btn-sm" onclick="return confirm('Hapus data?')"><i class="bi bi-trash3"></i></a>
                     </td>
                 </tr>
             <?php endwhile; ?>

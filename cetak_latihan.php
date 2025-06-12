@@ -15,7 +15,7 @@ $latihan = mysqli_query($conn, $query);
 <head>
     <meta charset="UTF-8">
     <title>Data Latihan</title>
-    <link rel="shortcut icon" href="img/icon.jpeg" type="image/x-icon">
+        <link rel="shortcut icon" href="img/icon.jpeg" type="image/x-icon">
 
     <style>
         body {
