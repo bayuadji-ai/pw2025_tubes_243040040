@@ -20,7 +20,7 @@ $data = $conn->query("SELECT * FROM modul_buku");
             <i class="bi bi-arrow-left-circle"></i> Kembali ke Dashboard
         </a>
         <br>
-        <a href="tambah_modul.php" class="btn btn-success btn-sm mb-2">+ Tambah Latihan</a>
+        <a href="tambah_modul.php" class="btn btn-success btn-sm mb-2">+ Tambah Modul</a>
         <table class="table table-bordered">
             <thead>
                 <tr>

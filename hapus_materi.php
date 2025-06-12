@@ -6,5 +6,5 @@ if (isset($_GET['id'])) {
     $conn->query("DELETE FROM tabel_materi WHERE id_materi = $id");
 }
 
-header("Location: dashboard_admin.php");
+header("Location: manajemen_materi.php");
 exit;

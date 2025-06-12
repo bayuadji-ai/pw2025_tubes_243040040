@@ -4,13 +4,26 @@ $conn = new mysqli("localhost", "root", "", "edge_academy");
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $judul = $_POST['judul'];
     $deskripsi = $_POST['deskripsi'];
-
     $gambar = $_FILES['gambar']['name'];
+    $tmp = $_FILES['gambar']['tmp_name'];
 
-    move_uploaded_file($_FILES['gambar']['tmp_name'], "upload/" . $gambar);
+    // Pastikan folder upload tersedia
+    if (!is_dir("upload")) {
+        mkdir("upload", 0755, true);
+    }
 
-    $conn->query("INSERT INTO modul_buku (judul, deskripsi, gambar) VALUES ('$judul', '$deskripsi', '$gambar')");
-    header("Location: index.php");
+    // Buat nama unik agar tidak overwrite
+    $nama_gambar_baru = uniqid() . "_" . $gambar;
+
+    // Upload gambar
+    if (move_uploaded_file($tmp, "upload/" . $nama_gambar_baru)) {
+        // Insert ke database
+        $conn->query("INSERT INTO modul_buku (judul, deskripsi, gambar) VALUES ('$judul', '$deskripsi', '$nama_gambar_baru')");
+        header("Location: manajemen_modul.php");
+        exit;
+    } else {
+        echo "<div class='alert alert-danger text-center'>Gagal upload gambar!</div>";
+    }
 }
 ?>
 
@@ -58,7 +71,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 <?php if (!empty($error)): ?>
                     <div class="alert alert-danger"><?= $error ?></div>
                 <?php endif; ?>
-                <form method="post">
+                <form method="post" enctype="multipart/form-data">
                     <div class="mb-3">
                         <label for="judul" class="form-label">Judul Modul</label>
                         <input type="text" name="judul" id="judul" class="form-control" required>

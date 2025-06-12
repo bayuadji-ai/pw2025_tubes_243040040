@@ -1,6 +1,14 @@
 <?php
-$conn = new mysqli("localhost", "root", "", "edge_academy");
+require 'functions.php';
+
+$query = "SELECT tabel_materi.*, tabel_mapel.nama_mapel, tabel_kelas.nama_kelas 
+          FROM tabel_materi
+          JOIN tabel_mapel ON tabel_materi.id_mapel = tabel_mapel.id_mapel
+          JOIN tabel_kelas ON tabel_mapel.id_kelas = tabel_kelas.id_kelas
+          ORDER BY id_materi DESC";
+$materi = mysqli_query($conn, $query);
 ?>
+
 
 <!DOCTYPE html>
 <html lang="id">
@@ -20,38 +28,71 @@ $conn = new mysqli("localhost", "root", "", "edge_academy");
         </a>
         <br>
         <a href="tambah_materi.php" class="btn btn-success btn-sm mb-2">+ Tambah Materi</a>
-        <table class="table table-bordered table-striped">
-            <thead>
-                <tr>
-                    <th>Judul</th>
-                    <th>Mata Pelajaran</th>
-                    <th>Kelas</th>
-                    <th>Aksi</th>
-                </tr>
-            </thead>
-            <tbody>
-                <?php
-                $materi = $conn->query("
-          SELECT m.id_materi, m.judul_materi, mp.nama_mapel, k.nama_kelas
-          FROM tabel_materi m
-          JOIN tabel_mapel mp ON m.id_mapel = mp.id_mapel
-          JOIN tabel_kelas k ON mp.id_kelas = k.id_kelas
-        ");
-                while ($row = $materi->fetch_assoc()):
-                ?>
-                    <tr>
-                        <td><?= htmlspecialchars($row['judul_materi']) ?></td>
-                        <td><?= htmlspecialchars($row['nama_mapel']) ?></td>
-                        <td><?= htmlspecialchars($row['nama_kelas']) ?></td>
-                        <td>
-                            <a href="edit_materi.php?id=<?= $row['id_materi'] ?>" class="btn btn-warning btn-sm">Edit</a>
-                            <a href="hapus_materi.php?id=<?= $row['id_materi'] ?>" class="btn btn-danger btn-sm" onclick="return confirm('Yakin hapus?')">Hapus</a>
-                        </td>
-                    </tr>
-                <?php endwhile; ?>
-            </tbody>
-        </table>
-    </div>
+        <br>
+
+        <form class="row g-2 mb-3" id="search-form" onsubmit="return false;">
+            <div class="col-9 col-md-6">
+                <input type="text" class="form-control" id="keyword" placeholder="🔍 Cari materi...">
+            </div>
+            <div class="col-3 col-md-2">
+                <button class="btn btn-primary w-100" id="btn-cari">Cari</button>
+            </div>
+        </form>
+        <br>
+
+        <div id="container">
+            <div class="table-responsive">
+                <table class="table table-striped table-bordered align-middle">
+                    <thead>
+                        <tr>
+                            <th>No</th>
+                            <th>Judul Materi</th>
+                            <th>Kelas</th>
+                            <th>Mapel</th>
+                            <th>Aksi</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <?php $i = 1;
+                        while ($row = mysqli_fetch_assoc($materi)) : ?>
+                            <tr>
+                                <td><?= $i++ ?></td>
+                                <td><?= $row['judul_materi'] ?></td>
+                                <td><?= $row['nama_kelas'] ?></td>
+                                <td><?= $row['nama_mapel'] ?></td>
+                                <td>
+                                    <a href="edit_materi.php?id=<?= $row['id_materi'] ?>" class="btn btn-warning btn-sm">Edit</a>
+                                    <a href="hapus_materi.php?id=<?= $row['id_materi'] ?>" class="btn btn-danger btn-sm" onclick="return confirm('Yakin?')">Hapus</a>
+                                </td>
+                            </tr>
+                        <?php endwhile; ?>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <script>
+            const keyword = document.getElementById('keyword');
+            const container = document.getElementById('container');
+            const btnCari = document.getElementById('btn-cari');
+
+            function searchMateri() {
+                const xhr = new XMLHttpRequest();
+                xhr.onreadystatechange = function() {
+                    if (xhr.readyState === 4 && xhr.status === 200) {
+                        container.innerHTML = xhr.responseText;
+                    }
+                };
+                xhr.open('GET', 'ajax/materi_search.php?keyword=' + keyword.value, true);
+                xhr.send();
+            }
+
+            // Trigger live search saat mengetik
+            keyword.addEventListener('keyup', searchMateri);
+
+            // Trigger saat tombol Cari ditekan
+            btnCari.addEventListener('click', searchMateri);
+        </script>
 
 </body>
 

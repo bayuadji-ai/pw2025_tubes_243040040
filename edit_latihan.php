@@ -25,7 +25,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['submit'])) {
         $stmt = $conn->prepare("UPDATE tabel_latihan SET judul_latihan = ?, isi_text = ?, id_mapel = ? WHERE id_latihan = ?");
         $stmt->bind_param("ssii", $judul, $isi, $id_mapel, $id);
         $stmt->execute();
-        header("Location: dashboard_admin.php");
+        header("Location: manajemen_latihan.php");
         exit;
     } else {
         $error = "Semua field wajib diisi!";

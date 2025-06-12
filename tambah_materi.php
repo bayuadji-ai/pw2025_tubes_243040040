@@ -17,7 +17,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['submit'])) {
         $stmt = $conn->prepare("INSERT INTO tabel_materi (judul_materi, isi_text, id_mapel) VALUES (?, ?, ?)");
         $stmt->bind_param("ssi", $judul, $isi, $id_mapel);
         $stmt->execute();
-        header("Location: dashboard_admin.php");
+        header("Location: manajemen_materi.php");
         exit;
     } else {
         $error = "Semua field wajib diisi!";

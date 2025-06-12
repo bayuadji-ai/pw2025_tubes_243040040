@@ -1,5 +1,12 @@
 <?php
-$conn = new mysqli("localhost", "root", "", "edge_academy");
+require 'functions.php';
+
+$query = "SELECT tabel_latihan.*, tabel_mapel.nama_mapel, tabel_kelas.nama_kelas 
+          FROM tabel_latihan
+          JOIN tabel_mapel ON tabel_latihan.id_mapel = tabel_mapel.id_mapel
+          JOIN tabel_kelas ON tabel_mapel.id_kelas = tabel_kelas.id_kelas
+          ORDER BY id_latihan DESC";
+$latihan = mysqli_query($conn, $query);
 ?>
 
 <!DOCTYPE html>
@@ -13,7 +20,6 @@ $conn = new mysqli("localhost", "root", "", "edge_academy");
 </head>
 
 <body class="container mt-4">
-    <!-- Latihan Section -->
     <div class="my-4">
         <h4>Daftar Latihan</h4>
         <a href="dashboard_admin.php" class="btn btn-outline-secondary mb-3">
@@ -21,38 +27,70 @@ $conn = new mysqli("localhost", "root", "", "edge_academy");
         </a>
         <br>
         <a href="tambah_latihan.php" class="btn btn-success btn-sm mb-2">+ Tambah Latihan</a>
-        <table class="table table-bordered table-striped">
-            <thead>
-                <tr>
-                    <th>Judul</th>
-                    <th>Mata Pelajaran</th>
-                    <th>Kelas</th>
-                    <th>Aksi</th>
-                </tr>
-            </thead>
-            <tbody>
-                <?php
-                $latihan = $conn->query("
-          SELECT l.id_latihan, l.judul_latihan, mp.nama_mapel, k.nama_kelas
-          FROM tabel_latihan l
-          JOIN tabel_mapel mp ON l.id_mapel = mp.id_mapel
-          JOIN tabel_kelas k ON mp.id_kelas = k.id_kelas
-        ");
-                while ($row = $latihan->fetch_assoc()):
-                ?>
-                    <tr>
-                        <td><?= htmlspecialchars($row['judul_latihan']) ?></td>
-                        <td><?= htmlspecialchars($row['nama_mapel']) ?></td>
-                        <td><?= htmlspecialchars($row['nama_kelas']) ?></td>
-                        <td>
-                            <a href="edit_latihan.php?id=<?= $row['id_latihan'] ?>" class="btn btn-warning btn-sm">Edit</a>
-                            <a href="hapus_latihan.php?id=<?= $row['id_latihan'] ?>" class="btn btn-danger btn-sm" onclick="return confirm('Yakin hapus?')">Hapus</a>
-                        </td>
-                    </tr>
-                <?php endwhile; ?>
-            </tbody>
-        </table>
-    </div>
+
+        <form class="row g-2 mb-3" id="search-form" onsubmit="return false;">
+            <div class="col-9 col-md-6">
+                <input type="text" class="form-control" id="keyword" placeholder="🔍 Cari materi...">
+            </div>
+            <div class="col-3 col-md-2">
+                <button class="btn btn-primary w-100" id="btn-cari">Cari</button>
+            </div>
+        </form>
+        <br>
+
+        <div id="container">
+            <div class="table-responsive">
+                <table class="table table-striped table-bordered align-middle">
+                    <thead>
+                        <tr>
+                            <th>No</th>
+                            <th>Judul Latihan</th>
+                            <th>Kelas</th>
+                            <th>Mapel</th>
+                            <th>Aksi</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <?php $i = 1;
+                        while ($row = mysqli_fetch_assoc($latihan)) : ?>
+                            <tr>
+                                <td><?= $i++ ?></td>
+                                <td><?= $row['judul_latihan'] ?></td>
+                                <td><?= $row['nama_kelas'] ?></td>
+                                <td><?= $row['nama_mapel'] ?></td>
+                                <td>
+                                    <a href="edit_latihan.php?id=<?= $row['id_latihan'] ?>" class="btn btn-warning btn-sm">Edit</a>
+                                    <a href="hapus_latihan.php?id=<?= $row['id_latihan'] ?>" class="btn btn-danger btn-sm" onclick="return confirm('Yakin?')">Hapus</a>
+                                </td>
+                            </tr>
+                        <?php endwhile; ?>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <script>
+            const keyword = document.getElementById('keyword');
+            const container = document.getElementById('container');
+            const btnCari = document.getElementById('btn-cari');
+
+            function searchMateri() {
+                const xhr = new XMLHttpRequest();
+                xhr.onreadystatechange = function() {
+                    if (xhr.readyState === 4 && xhr.status === 200) {
+                        container.innerHTML = xhr.responseText;
+                    }
+                };
+                xhr.open('GET', 'ajax/soal_search.php?keyword=' + keyword.value, true);
+                xhr.send();
+            }
+
+            // Trigger live search saat mengetik
+            keyword.addEventListener('keyup', searchMateri);
+
+            // Trigger saat tombol Cari ditekan
+            btnCari.addEventListener('click', searchMateri);
+        </script>
 </body>
 
 </html>
