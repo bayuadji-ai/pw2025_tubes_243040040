@@ -44,7 +44,7 @@ $materi = mysqli_query($conn, $query);
         <br>
         <a href="tambah_materi.php" class="btn btn-success btn-sm mb-2">+ Tambah Materi</a>
         <br>
-        <a href="cetak_latihan.php" class="btn btn-danger btn-sm">Print</a>
+        <a href="cetak_materi.php" class="btn btn-danger btn-sm">Print</a>
         <br>
 
         <form class="row g-2 mb-3" id="search-form" onsubmit="return false;">
