@@ -29,8 +29,6 @@ $latihan = mysqli_query($conn, $query);
         <br>
         <a href="tambah_latihan.php" class="btn btn-success btn-sm mb-2">+ Tambah Latihan</a>
         <br>
-        <a href="cetak_latihan.php" class="btn btn-danger btn-sm">Print</a>
-
         <form class="row g-2 mb-3" id="search-form" onsubmit="return false;">
             <div class="col-9 col-md-6">
                 <input type="text" class="form-control" id="keyword" placeholder="🔍 Cari latihan...">

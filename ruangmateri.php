@@ -101,6 +101,7 @@ $kelas = $conn->query("SELECT * FROM tabel_kelas");
     <div id="materiContainer" class="row g-3"></div>
 
     <script>
+        // memberi icon pada setiap mapel
         function getIcon(nama) {
             nama = nama.toLowerCase();
             if (nama.includes("fisika")) return "⚛️";

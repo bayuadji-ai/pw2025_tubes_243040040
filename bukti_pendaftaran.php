@@ -11,8 +11,8 @@ if (!isset($_GET['id']) || !is_numeric($_GET['id'])) {
     die("Akses tidak sah! ID pendaftaran tidak ditemukan.");
 }
 
-$id_pendaftaran = $_GET['id']; // ✅ SIMPAN ID
-$user_id = $_SESSION['user_id']; // ✅ AMBIL USER ID
+$id_pendaftaran = $_GET['id']; 
+$user_id = $_SESSION['user_id']; 
 
 $query = "
 SELECT 
